@@ -30,13 +30,13 @@
 
 {{#overlay-marks as |mark|}}
   {{#show-overlay at=mark
-                 hoverable=hoverable
-                 label=(humanize mark.id)
-                 class=mark.id
-                 onclick=(action "focusOn" mark.id)
-                 dismiss=(action "focusOn" null)
-                 focused=(eq mark.id focusedId)
-                 highlighted=(eq mark.id highlightedId) }}
+                  hoverable=hoverable
+                  label=(humanize mark.id)
+                  class=mark.id
+                  onclick=(action "focusOn" mark.id)
+                  dismiss=(action "focusOn" null)
+                  focused=(eq mark.id focusedId)
+                  highlighted=(eq mark.id highlightedId) }}
     {{#if (eq mark.id 'title')}}
       <div class="example-overlay-content">😎</div>
     {{/if}}
