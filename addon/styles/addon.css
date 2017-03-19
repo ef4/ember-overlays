@@ -17,7 +17,7 @@
     visibility: initial;
 }
 
-.show-overlay.is-focused {
+.show-overlay.focused {
     /* this lets our scrims block out every other editor-overlay */
     z-index: 1;
 }
@@ -42,7 +42,7 @@
     box-sizing: border-box;
 }
 
-.show-overlay.has-editor.is-focused > .overlay-border {
+.show-overlay.has-editor.focused > .overlay-border {
     background: #fff;
 }
 
@@ -59,7 +59,6 @@
     visibility: initial;
 }
 
-/*
 .overlay-scrim {
     width: 200vw;
     height: 200vh;
@@ -67,23 +66,22 @@
     position: absolute;
     box-sizing: border-box;
     z-index: -1;
-    &.top {
-        bottom: 100%;
-        left: -100vw
-    }
-    &.bottom {
-        top: 100%;
-        left: -100vw;
-    }
-    &.left {
-        right: 100%;
-        top: 0;
-        height: 100%;
-    }
-    &.right {
-        left: 100%;
-        top: 0;
-        height: 100%;
-    }
 }
-*/
+.overlay-scrim.top {
+    bottom: 100%;
+    left: -100vw
+}
+.overlay-scrim.bottom {
+    top: 100%;
+    left: -100vw;
+}
+.overlay-scrim.left {
+    right: 100%;
+    top: 0;
+    height: 100%;
+}
+.overlay-scrim.right {
+    left: 100%;
+    top: 0;
+    height: 100%;
+}

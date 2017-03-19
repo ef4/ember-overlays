@@ -4,6 +4,11 @@
 </label>
 
 <label>
+  {{input type="checkbox" checked=titleOnly}}
+  Lock Title
+</label>
+
+<label>
   {{input type="checkbox" checked=hoverable}}
   Hoverable
 </label>
@@ -23,11 +28,13 @@
   </ul>
 </article>
 
-
 {{#overlay-marks as |mark|}}
   {{show-overlay at=mark
                  hoverable=hoverable
                  label=(humanize mark.id)
                  class=mark.id
-                 highlight=(eq mark.id highlightedId) }}
+                 onclick=(action "focusOn" mark.id)
+                 dismiss=(action "focusOn" null)
+                 focused=(eq mark.id focusedId)
+                 highlighted=(eq mark.id highlightedId) }}
 {{/overlay-marks}}

@@ -4,11 +4,13 @@ import raf from '../raf';
 import { ownTransform } from '../transform';
 import { task } from 'ember-concurrency';
 import { boundsEqual } from '../bounds';
+import scrimFader from '../scrim-fader';
 
 export default Ember.Component.extend({
   layout,
+  scrimFader,
   classNames: ['show-overlay'],
-  classNameBindings: ['reveal', 'hoverable', 'isFocused'],
+  classNameBindings: ['reveal', 'hoverable', 'focused'],
   hovered: false,
   fieldScale: 1,
 
@@ -125,7 +127,7 @@ export default Ember.Component.extend({
     }
   }).on('didInsertElement'),
 
-  reveal: Ember.computed.or('hovered', 'highlight', 'isOpen'),
+  reveal: Ember.computed.or('hovered', 'highlighted', 'focused'),
 
   actions: {
     beginHover() {
@@ -135,6 +137,16 @@ export default Ember.Component.extend({
       this.set('hovered', false);
     },
     targetClicked() {
+      let handler = this.get('onclick');
+      if (handler) {
+        handler();
+      }
+    },
+    dismiss() {
+      let handler = this.get('dismiss');
+      if (handler) {
+        handler();
+      }
     }
   }
 });
