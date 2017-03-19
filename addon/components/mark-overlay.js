@@ -9,6 +9,11 @@ export default Ember.Component.extend({
   tagName: '',
   service: Ember.inject.service('ember-overlays'),
 
+  // Addon authors should group their overlays under a unique group
+  // name so they don't interfere with other uses. An app can use the
+  // default group.
+  group: 'default',
+
   // this is an optional parameter that will be made available as
   // mark.model inside overlay-marks
   model: null,
@@ -27,7 +32,7 @@ export default Ember.Component.extend({
       this.get('id'),
       firstNode,
       lastNode,
-      this.get('type'),
+      this.get('group') || 'default',
       this.get('model')
     );
   }

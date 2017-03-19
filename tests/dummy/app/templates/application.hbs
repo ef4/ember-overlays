@@ -1,12 +1,27 @@
 <label>
   {{input type="checkbox" checked=stayOn}}
-  Stay On
+  Highlight Title
 </label>
 
-<p style="margin: 100px">
-  Hello {{#mark-overlay id="world" type="demo"}}world{{/mark-overlay}}
-</p>
+<label>
+  {{input type="checkbox" checked=hoverable}}
+  Hoverable
+</label>
 
-{{#overlay-marks type="demo" as |mark|}}
-  {{show-overlay at=mark hoverable=true label="planet" highlight=stayOn}}
+<article>
+  <h1>{{#mark-overlay id="title" }}Ember Overlay Demo{{/mark-overlay}}</h1>
+  <div class="byline">
+    by
+    {{#mark-overlay id="first-name" }}Edward{{/mark-overlay}}
+    {{#mark-overlay id="last-name" }}Faulkner{{/mark-overlay}}
+  </div>
+</article>
+
+
+{{#overlay-marks as |mark|}}
+  {{show-overlay at=mark
+                 hoverable=hoverable
+                 label=(humanize mark.id)
+                 class=mark.id
+                 highlight=(and stayOn (eq mark.id "title")) }}
 {{/overlay-marks}}

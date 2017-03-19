@@ -2,4 +2,20 @@
     font-size: 10px;
     font-family: 'Avenir', 'helvetica', sans-serif;
     text-transform: uppercase;
+    background-color: red;
+}
+
+.overlay-border {
+    border-color: red;
+}
+
+article {
+    margin: 4em 10em;
+}
+
+.last-name .overlay-border {
+    border-color: green;
+}
+.last-name .overlay-label {
+    background-color: green;
 }
