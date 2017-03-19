@@ -1,6 +1,6 @@
 <label>
-  {{input type="checkbox" checked=stayOn}}
-  Highlight Title
+  {{input type="checkbox" checked=cycle}}
+  Cycle
 </label>
 
 <label>
@@ -15,6 +15,12 @@
     {{#mark-overlay id="first-name" }}Edward{{/mark-overlay}}
     {{#mark-overlay id="last-name" }}Faulkner{{/mark-overlay}}
   </div>
+  <ul>
+    <li>When hoverable, your content is shielded behind the overlays and won't receive mouse events.</li>
+    <li>When not hoverable, your content is accessible as normal, and overlays can only be revealed programmatically.</li>
+    <li>You can style the overlays by targeting the <code>.overlay-border</code> and <code>.overlay-label</code> classes. See <code>tests/dummy/app/styles/app.css</code></li>
+    <li>Addong authors can pass a <code>group</code> parameter to <code>mark-overlay</code> and <code>overlay-marks</code> to keep their overlays separate from the app or other addons.</li>
+  </ul>
 </article>
 
 
@@ -23,5 +29,5 @@
                  hoverable=hoverable
                  label=(humanize mark.id)
                  class=mark.id
-                 highlight=(and stayOn (eq mark.id "title")) }}
+                 highlight=(eq mark.id highlightedId) }}
 {{/overlay-marks}}
