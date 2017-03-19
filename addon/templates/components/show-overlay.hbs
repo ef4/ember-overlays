@@ -1,1 +1,15 @@
-I'm an overlay
+{{#if label}}
+  <label class="overlay-label">{{label}}</label>
+{{/if}}
+<div class="overlay-border">
+  <div class="target" onmouseenter={{action "beginHover"}} onmouseleave={{action "endHover"}} onclick={{action "targetClicked" }}>
+    {{yield}}
+  </div>
+</div>
+
+{{#if isOpen}}
+  <div class="overlay-scrim top"    onclick={{action dismiss}}></div>
+  <div class="overlay-scrim bottom" onclick={{action dismiss}}></div>
+  <div class="overlay-scrim left"   onclick={{action dismiss}}></div>
+  <div class="overlay-scrim right"  onclick={{action dismiss}}></div>
+{{/if}}

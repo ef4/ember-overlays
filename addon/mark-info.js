@@ -6,4 +6,12 @@ export default class MarkInfo {
     this.type = type;
     this.model = model;
   }
+
+  bounds() {
+    let r = new Range();
+    r.setStartBefore(this._firstNode);
+    r.setEndAfter(this._lastNode);
+    return r.getBoundingClientRect();
+  }
+
 }

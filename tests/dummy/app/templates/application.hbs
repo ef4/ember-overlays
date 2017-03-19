@@ -1,5 +1,12 @@
-{{outlet}}
+<label>
+  {{input type="checkbox" checked=stayOn}}
+  Stay On
+</label>
+
+<p style="margin: 100px">
+  Hello {{#mark-overlay id="world" type="demo"}}world{{/mark-overlay}}
+</p>
 
 {{#overlay-marks type="demo" as |mark|}}
-  {{show-overlay at=mark hoverable=true}}
+  {{show-overlay at=mark hoverable=true label="planet" highlight=stayOn}}
 {{/overlay-marks}}
