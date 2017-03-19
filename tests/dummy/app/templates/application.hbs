@@ -1,5 +1,5 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
 {{outlet}}
+
+{{#overlay-marks type="demo" as |mark|}}
+  {{show-overlay at=mark hoverable=true}}
+{{/overlay-marks}}

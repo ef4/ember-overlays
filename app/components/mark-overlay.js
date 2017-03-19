@@ -1,0 +1,1 @@
+export { default } from 'ember-overlays/components/mark-overlay';
