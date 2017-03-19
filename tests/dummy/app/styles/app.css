@@ -19,3 +19,7 @@ article {
 .last-name .overlay-label {
     background-color: green;
 }
+
+.example-overlay-content {
+    float: right;
+}

@@ -3,7 +3,9 @@
 {{/if}}
 <div class="overlay-border">
   <div class="target" onmouseenter={{action "beginHover"}} onmouseleave={{action "endHover"}} onclick={{action "targetClicked" }}>
-    {{yield}}
+    {{#if reveal}}
+      {{yield}}
+    {{/if}}
   </div>
 </div>
 
