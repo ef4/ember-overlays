@@ -40,3 +40,8 @@ article {
         margin-top: 100px;
     }
 }
+
+
+.make-it-harder {
+    transform: translateX(50px) translateY(50px) scale(0.7);
+}

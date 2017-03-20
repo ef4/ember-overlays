@@ -18,9 +18,16 @@
   Moving content
 </label>
 
+<label>
+  {{input type="checkbox" checked=underlyingTransform}}
+  Underlying Transform
+</label>
+
 <div class={{if moving "moving"}}></div>
 
-{{outlet}}
+<div class={{if underlyingTransform "make-it-harder"}}>
+  {{outlet}}
+</div>
 
 {{#overlay-marks as |mark|}}
   {{#if (not-eq mark.id "advanced")}}
@@ -46,7 +53,7 @@
                   lockWhileFocused=true
                   highlighted=(eq mark.id highlightedId) }}
 
-    You can put your own content inside the overlay, and it will still fit. Hit the plug to grow this content:
+    You can put your own content inside the overlay, and it will still fit. Hit the plus to grow this content:
     <button {{action "addThing"}}>+</button>
     {{#each things as |thing|}}
       <div>more content</div>
