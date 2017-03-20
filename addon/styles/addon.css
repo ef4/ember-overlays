@@ -2,10 +2,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    box-sizing: border-box;
     cursor: pointer;
     transform-origin: 0 0;
-
 
     /* it's important that we use hidden here because it stops us from
        blocking mouse events for events that our label and padding may
@@ -40,11 +38,6 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-}
-
-.overlay-border > .target {
-    width: 100%;
-    height: 100%;
 }
 
 .show-overlay.hoverable > .overlay-border > .target {

@@ -13,19 +13,44 @@
   Hoverable
 </label>
 
+<label>
+  {{input type="checkbox" checked=moving}}
+  Moving content
+</label>
+
+<div class={{if moving "moving"}}></div>
+
 {{outlet}}
 
 {{#overlay-marks as |mark|}}
+  {{#if (not-eq mark.id "advanced")}}
+    {{show-overlay at=mark
+                   hoverable=hoverable
+                   label=(humanize mark.id)
+                   class=mark.id
+                   onclick=(action "focusOn" mark.id)
+                   dismiss=(action "focusOn" null)
+                   focused=(eq mark.id focusedId)
+                   highlighted=(eq mark.id highlightedId) }}
+  {{/if}}
+{{/overlay-marks}}
+
+{{#overlay-marks id="advanced" as |mark|}}
   {{#show-overlay at=mark
                   hoverable=hoverable
                   label=(humanize mark.id)
-                  class=mark.id
+                  class="advanced"
                   onclick=(action "focusOn" mark.id)
                   dismiss=(action "focusOn" null)
                   focused=(eq mark.id focusedId)
+                  lockWhileFocused=true
                   highlighted=(eq mark.id highlightedId) }}
-    {{#if (eq mark.id 'title')}}
-      <div class="example-overlay-content">😎</div>
-    {{/if}}
+
+    You can put your own content inside the overlay, and it will still fit. Hit the plug to grow this content:
+    <button {{action "addThing"}}>+</button>
+    {{#each things as |thing|}}
+      <div>more content</div>
+    {{/each}}
+    <p>This overlay is also using lockWhileFocused so it won't move while you're interacting with it.</p>
   {{/show-overlay}}
 {{/overlay-marks}}

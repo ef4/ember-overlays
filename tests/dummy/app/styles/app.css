@@ -2,11 +2,6 @@
     font-size: 10px;
     font-family: 'Avenir', 'helvetica', sans-serif;
     text-transform: uppercase;
-    background-color: red;
-}
-
-.overlay-border {
-    border-color: red;
 }
 
 article {
@@ -20,6 +15,28 @@ article {
     background-color: green;
 }
 
+.advanced .overlay-border {
+    background-color: #cddc39;
+}
+
 .example-overlay-content {
-    float: right;
+    height: 100%;
+}
+
+
+.moving {
+    animation-name: grow;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes grow {
+    from {
+        margin-top: 0px;
+    }
+
+    to {
+        margin-top: 100px;
+    }
 }
