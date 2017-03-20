@@ -52,33 +52,34 @@ export default Ember.Component.extend({
   _track: task(function * () {
     let $elt = this.$();
     let $ownTarget = this.$('.target');
+    let lastTargetRect;
 
     for (;;) {
 
       // stay hidden until we have a target
       let targetRect = yield* this._waitForTargetRect();
+      if (!lastTargetRect || !boundsEqual(targetRect, lastTargetRect)) {
 
-      // position ourselves over the target
-      let ownRect = $ownTarget[0].getBoundingClientRect();
-      let t = ownTransform($elt[0]);
-      $elt.css({
-        display: 'initial',
-        transform: `${this._translation(targetRect, ownRect, t)} scale(${this.get('fieldScale')})`
-      });
-      $ownTarget.css({
-        width: this._matchWidth($ownTarget, targetRect, ownRect),
-        minHeight: this._matchHeight($ownTarget, targetRect, ownRect),
-      });
-      $elt.find('> label').css({
-        transform: `translateY(-100%) scale(${1 / this.get('fieldScale')})`
-      });
-
+        // position ourselves over the target
+        let ownRect = $ownTarget[0].getBoundingClientRect();
+        let t = ownTransform($elt[0]);
+        $elt.css({
+          display: 'initial',
+          transform: `${this._translation(targetRect, ownRect, t)} scale(${this.get('fieldScale')})`
+        });
+        $ownTarget.css({
+          width: this._matchWidth($ownTarget, targetRect, ownRect),
+          minHeight: this._matchHeight($ownTarget, targetRect, ownRect),
+        });
+        $elt.find('> label').css({
+          transform: `translateY(-100%) scale(${1 / this.get('fieldScale')})`
+        });
+      }
+      lastTargetRect = targetRect;
       yield raf();
-
       while (this.get('lockWhileFocused') && this.get('focused')) {
         yield raf();
       }
-
     }
   }).on('didInsertElement'),
 
