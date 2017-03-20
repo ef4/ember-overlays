@@ -1,17 +1,22 @@
 {
   "name": "ember-overlays",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Flexible overlays that track your content.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "overlay",
+    "highlight",
+    "annotate",
+    "label",
+    "focus"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Edward Faulkner <edward@eaf4.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/ef4/ember-overlays",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
