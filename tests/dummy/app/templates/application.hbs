@@ -24,7 +24,7 @@
 
 {{#overlay-marks as |mark|}}
   {{#if (not-eq mark.id "advanced")}}
-    {{show-overlay at=mark
+    {{create-overlay at=mark
                    hoverable=hoverable
                    label=(humanize mark.id)
                    class=mark.id
@@ -36,7 +36,7 @@
 {{/overlay-marks}}
 
 {{#overlay-marks id="advanced" as |mark|}}
-  {{#show-overlay at=mark
+  {{#create-overlay at=mark
                   hoverable=hoverable
                   label=(humanize mark.id)
                   class="advanced"
@@ -52,5 +52,5 @@
       <div>more content</div>
     {{/each}}
     <p>This overlay is also using lockWhileFocused so it won't move while you're interacting with it.</p>
-  {{/show-overlay}}
+  {{/create-overlay}}
 {{/overlay-marks}}

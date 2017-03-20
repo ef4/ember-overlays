@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/show-overlay';
+import layout from '../templates/components/create-overlay';
 import raf from '../raf';
 import { ownTransform } from '../transform';
 import { task } from 'ember-concurrency';
@@ -12,6 +12,8 @@ export default Ember.Component.extend({
   classNames: ['show-overlay'],
   classNameBindings: ['reveal', 'hoverable', 'focused'],
   hovered: false,
+
+  // TODO
   fieldScale: 1,
 
   _targetRect() {
