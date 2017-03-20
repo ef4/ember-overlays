@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   service: Ember.inject.service('ember-overlays'),
   marks: Ember.computed('service.marks', function() {
     let group = this.get('group') || 'default';
-    return this.get('service.marks').filter(m => m.group === group);
+    let id = this.get('id');
+    return this.get('service.marks').filter(m => m.group === group && (id == null || m.id === id));
   })
 });
