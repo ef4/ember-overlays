@@ -22,7 +22,9 @@ The `overlay-marks` component provides access to the all the marks that are curr
 
 ```hbs
 {{#overlay-marks group="my-fancy-marks" as |mark|}}
-  {{create-overlay at=mark label=mark.model.name }}
+  {{#create-overlay at=mark label=mark.model.name highlighted=showOverlay}}
+    Overlay content
+  {{/create-overlay}}
 {{/overlay-marks}}
 ```
 
