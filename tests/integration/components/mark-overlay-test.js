@@ -5,21 +5,7 @@ moduleForComponent('mark-overlay', 'Integration | Component | mark overlay', {
   integration: true
 });
 
-test('it renders', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{mark-overlay}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#mark-overlay}}
-      template block text
-    {{/mark-overlay}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+test('it renders and leaks no whitespace', function(assert) {
+  this.render(hbs`{{#mark-overlay}}template block text{{/mark-overlay}}`);
+  assert.equal(this.$().text(), 'template block text');
 });
