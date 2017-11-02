@@ -8,6 +8,7 @@ export default class MarkInfo {
   }
 
   bounds() {
+    if (!this._firstNode.parentNode || !this._lastNode.parentNode) { return; }
     let r = new Range();
     r.setStartBefore(this._firstNode);
     r.setEndAfter(this._lastNode);
