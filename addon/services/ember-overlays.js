@@ -23,6 +23,8 @@ export default Ember.Service.extend({
   },
 
   _update() {
+    if (this.isDestroyed) { return; }
+
     let sources = this._markSources;
     let marks = Object.create(null);
     for (let sourceId in sources) {
