@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { guidFor } from '@ember/object/internals';
 import layout from '../templates/components/mark-overlay';
 import MarkInfo from '../mark-info';
-const { guidFor } = Ember;
 import { componentNodes } from '../ember-private-api';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: '',
-  service: Ember.inject.service('ember-overlays'),
+  service: service('ember-overlays'),
 
   // Addon authors should group their overlays under a unique group
   // name so they don't interfere with other uses. An app can use the

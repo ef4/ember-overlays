@@ -1,7 +1,7 @@
-import Ember from 'ember';
-const { scheduleOnce } = Ember.run;
+import Service from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 
-export default Ember.Service.extend({
+export default Service.extend({
   init() {
     this._super();
     this._markSources = Object.create(null);
