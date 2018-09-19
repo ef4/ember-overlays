@@ -1,8 +1,14 @@
+{{! template-lint-disable no-invalid-interactive --}}
 {{#if label}}
   <label class="overlay-label">{{label}}</label>
 {{/if}}
 <div class="overlay-border">
-  <div class="target" onmouseenter={{action "beginHover"}} onmouseleave={{action "endHover"}} onclick={{action "targetClicked" }}>
+  <div
+    class="target"
+    onmouseenter={{action "beginHover"}}
+    onmouseleave={{action "endHover"}}
+    onclick={{action "targetClicked" }}
+  >
     {{#if reveal}}{{yield}}{{/if}}
   </div>
 </div>

@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { or } from '@ember/object/computed';
+import Component from '@ember/component';
 import layout from '../templates/components/create-overlay';
 import raf from '../raf';
 import { ownTransform } from '../transform';
@@ -6,7 +7,7 @@ import { task } from 'ember-concurrency';
 import { boundsEqual } from '../bounds';
 import scrimFader from '../scrim-fader';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   scrimFader,
   classNames: ['show-overlay'],
@@ -83,7 +84,7 @@ export default Ember.Component.extend({
     }
   }).on('didInsertElement'),
 
-  reveal: Ember.computed.or('hovered', 'highlighted', 'focused'),
+  reveal: or('hovered', 'highlighted', 'focused'),
 
   actions: {
     beginHover() {

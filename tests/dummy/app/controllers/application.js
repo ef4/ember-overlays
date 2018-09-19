@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   hoverable: true,
   cycle: false,
   titleOnly: false,
@@ -28,7 +29,7 @@ export default Ember.Controller.extend({
       this.set('focusedId', markId);
     },
     addThing() {
-      let t = this.get('things') || Ember.A();
+      let t = this.get('things') || A();
       t.pushObject(1);
       this.set('things', t);
     }
