@@ -15,7 +15,7 @@ export default function scrimFader() {
     promises = promises.concat(Array.from(this.newElement.find('> .overlay-scrim')).map(
       elt => animate($(elt), { opacity: [maxOpacity, 0]}, { queue: false, duration: 250 } )
     ));
+    this.newElement[0].style.visibility = '';
   }
-  this.newElement.style.visibility = '';
   return RSVP.all(promises);
 }
