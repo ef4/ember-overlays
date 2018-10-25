@@ -36,6 +36,7 @@ To actually render an overlay, you pass one of the marks to `create-overlay`. It
 
  - at: the mark on which to render.
  - label: an optional text label to render above the overlay.
+ - labelComponent: an optional component to render instead of the label. Overrides the `label` property.
  - class: optional DOM classes that will be set on the overlay (this works like any other Ember component)
  - hoverable: if true, this overlay will become visible when hovered.
  - highlighted: when true, this overlay will be visible.
