@@ -1,4 +1,4 @@
-import { or } from '@ember/object/computed';
+import { or, and } from '@ember/object/computed';
 import Component from '@ember/component';
 import layout from '../templates/components/create-overlay';
 import raf from '../raf';
@@ -84,7 +84,8 @@ export default Component.extend({
     }
   }).on('didInsertElement'),
 
-  reveal: or('hovered', 'highlighted', 'focused'),
+  reveal: or('hoveredAndHoverable', 'highlighted', 'focused'),
+  hoveredAndHoverable: and('hovered', 'hoverable'),
 
   actions: {
     beginHover() {
