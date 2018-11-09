@@ -9,10 +9,12 @@ export default class MarkInfo {
 
   bounds() {
     if (!this._firstNode.parentNode || !this._lastNode.parentNode) { return; }
-    let r = new Range();
+    let r = document.createRange();
     r.setStartBefore(this._firstNode);
     r.setEndAfter(this._lastNode);
-    return r.getBoundingClientRect();
+    let boundingRect = r.getBoundingClientRect();
+    if (boundingRect.height === 0 && boundingRect.width === 0) return this._firstNode.getBoundingClientRect()
+    return boundingRect;
   }
 
 }
