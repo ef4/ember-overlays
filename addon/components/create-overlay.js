@@ -89,15 +89,12 @@ export default Component.extend({
 
   actions: {
     beginHover() {
-      console.log('BEGIN HOVER');
       this.set('hovered', true);
     },
     endHover() {
-      console.log('END HOVER');
       this.set('hovered', false);
     },
     targetClicked() {
-      console.log('TARGET CLICKED');
       let handler = this.get('onclick');
       if (handler) {
         handler();
