@@ -13,7 +13,7 @@ export default class MarkInfo {
     r.setStartBefore(this._firstNode);
     r.setEndAfter(this._lastNode);
     let boundingRect = r.getBoundingClientRect();
-    if (boundingRect.height === 0 && boundingRect.width === 0) return this._firstNode.getBoundingClientRect()
+    if (boundingRect.height === 0 && boundingRect.width === 0) return this._firstNode.getBoundingClientRect();
     return boundingRect;
   }
 
