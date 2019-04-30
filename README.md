@@ -6,12 +6,23 @@ This addon provides three components that work together to provide positioned ov
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v2.18 or above
-* Ember CLI v2.13 or above
+* Ember.js v2.16 or above
+* Ember CLI v2.16 or above
 
 
 Installation
 ------------------------------------------------------------------------------
+
+```
+ember install my-addon
+```
+
+Usage
+------------------------------------------------------------------------------
+
+We provide three components:
+
+## mark-overlay
 
 First, you mark up a location that you may want to overlay:
 
