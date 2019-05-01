@@ -2,6 +2,26 @@
 
 This addon provides three components that work together to provide positioned overlays on top of your existing content.
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.16 or above
+* Ember CLI v2.16 or above
+
+
+Installation
+------------------------------------------------------------------------------
+
+```
+ember install my-addon
+```
+
+Usage
+------------------------------------------------------------------------------
+
+We provide three components:
+
 ## mark-overlay
 
 First, you mark up a location that you may want to overlay:
@@ -48,26 +68,7 @@ To actually render an overlay, you pass one of the marks to `create-overlay`. It
 
 This repo's dummy app has a working demo page.
 
-## Installation
+# Contributing / Testing / Building
 
-* `git clone <repository-url>` this repository
-* `cd ember-overlays`
-* `npm install`
-* `bower install`
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
-## Running
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
