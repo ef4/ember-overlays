@@ -14,7 +14,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install my-addon
+ember install ember-overlays
 ```
 
 Usage
@@ -71,4 +71,3 @@ This repo's dummy app has a working demo page.
 # Contributing / Testing / Building
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
-
