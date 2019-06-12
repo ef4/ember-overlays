@@ -41,6 +41,8 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV.EmberENV.RAISE_ON_DEPRECATION = true;
   }
 
   if (environment === 'production') {
