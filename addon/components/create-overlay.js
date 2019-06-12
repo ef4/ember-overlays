@@ -6,7 +6,6 @@ import { ownTransform } from '../transform';
 import { task } from 'ember-concurrency';
 import { boundsEqual } from '../bounds';
 import scrimFader from '../scrim-fader';
-import jQuery from 'jquery';
 
 export default Component.extend({
   layout,
@@ -44,13 +43,11 @@ export default Component.extend({
   },
 
   _matchWidth(elt, targetRect, ownRect) {
-    let $elt = jQuery(elt);
-    return `${$elt.outerWidth() + targetRect.right - targetRect.left - ownRect.right + ownRect.left}px`;
+    return `${elt.clientWidth + targetRect.right - targetRect.left - ownRect.right + ownRect.left}px`;
   },
 
   _matchHeight(elt, targetRect, ownRect) {
-    let $elt = jQuery(elt);
-    return `${$elt.outerHeight() + targetRect.bottom - targetRect.top - ownRect.bottom + ownRect.top}px`;
+    return `${elt.clientHeight + targetRect.bottom - targetRect.top - ownRect.bottom + ownRect.top}px`;
   },
 
   _track: task(function * () {
