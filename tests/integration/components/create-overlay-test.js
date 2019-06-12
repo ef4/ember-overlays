@@ -15,9 +15,10 @@ module('Integration | Component | create overlay', function(hooks) {
         {{create-overlay at=mark highlighted=true label="my overlay" class="my-overlay"}}
       {{/overlay-marks}}
     `);
-    assert.equal(this.$('label:contains(my overlay)').length, 1);
-    assert.equal(this.$('.my-overlay .target').width(), 100);
-    assert.equal(this.$('.my-overlay .target').height(), 200);
+    assert.ok([...document.querySelectorAll('label')].find(element => /my overlay/.test(element.textContent)));
+    let bounds = document.querySelector('.my-overlay .target').getBoundingClientRect();
+    assert.equal(bounds.width, 100);
+    assert.equal(bounds.height, 200);
   });
 
   test('it renders with user content', async function(assert) {
@@ -32,8 +33,9 @@ module('Integration | Component | create overlay', function(hooks) {
       {{/overlay-marks}}
     `);
     assert.dom('.user-content').exists({ count: 1 });
-    assert.equal(this.$('.my-overlay .target').width(), 100);
-    assert.equal(this.$('.my-overlay .target').height(), 200);
+    let bounds = document.querySelector('.my-overlay .target').getBoundingClientRect();
+    assert.equal(bounds.width, 100);
+    assert.equal(bounds.height, 200);
   });
 
   test('it renders with user content taller than underlying mark', async function(assert) {
@@ -48,7 +50,8 @@ module('Integration | Component | create overlay', function(hooks) {
       {{/overlay-marks}}
     `);
     assert.dom('.user-content').exists({ count: 1 });
-    assert.equal(this.$('.my-overlay .target').width(), 100);
-    assert.equal(this.$('.my-overlay .target').height(), 300);
+    let bounds = document.querySelector('.my-overlay .target').getBoundingClientRect();
+    assert.equal(bounds.width, 100);
+    assert.equal(bounds.height, 300);
   });
 });
