@@ -6,6 +6,7 @@ import { ownTransform } from '../transform';
 import { task } from 'ember-concurrency';
 import { boundsEqual } from '../bounds';
 import scrimFader from '../scrim-fader';
+import jQuery from 'jquery';
 
 export default Component.extend({
   layout,
@@ -24,14 +25,14 @@ export default Component.extend({
 
   _waitForTargetRect: function * () {
     let hiding = false;
-    let $elt = this.$();
+    let elt = this.element;
     for (;;) {
       let targetRect = this._targetRect();
       if (targetRect) {
         return targetRect;
       }
       if (!hiding) {
-        $elt.css({ display: 'none' });
+        elt.style.display = 'none';
         hiding = true;
       }
       yield raf();
@@ -42,17 +43,19 @@ export default Component.extend({
     return `translateX(${targetRect.left - ownRect.left + currentTransform.tx}px) translateY(${targetRect.top - ownRect.top + currentTransform.ty}px)`;
   },
 
-  _matchWidth($elt, targetRect, ownRect) {
+  _matchWidth(elt, targetRect, ownRect) {
+    let $elt = jQuery(elt);
     return `${$elt.outerWidth() + targetRect.right - targetRect.left - ownRect.right + ownRect.left}px`;
   },
 
-  _matchHeight($elt, targetRect, ownRect) {
+  _matchHeight(elt, targetRect, ownRect) {
+    let $elt = jQuery(elt);
     return `${$elt.outerHeight() + targetRect.bottom - targetRect.top - ownRect.bottom + ownRect.top}px`;
   },
 
   _track: task(function * () {
-    let $elt = this.$();
-    let $ownTarget = this.$('.target');
+    let elt = this.element;
+    let ownTarget = elt.querySelector('.target');
     let lastTargetRect;
 
     for (;;) {
@@ -62,19 +65,16 @@ export default Component.extend({
       if (!lastTargetRect || !boundsEqual(targetRect, lastTargetRect)) {
 
         // position ourselves over the target
-        let ownRect = $ownTarget[0].getBoundingClientRect();
-        let t = ownTransform($elt[0]);
-        $elt.css({
-          display: 'initial',
-          transform: `${this._translation(targetRect, ownRect, t)} scale(${this.get('fieldScale')})`
-        });
-        $ownTarget.css({
-          width: this._matchWidth($ownTarget, targetRect, ownRect),
-          minHeight: this._matchHeight($ownTarget, targetRect, ownRect),
-        });
-        $elt.find('> label').css({
-          transform: `translateY(-100%) scale(${1 / this.get('fieldScale')})`
-        });
+        let ownRect = ownTarget.getBoundingClientRect();
+        let t = ownTransform(elt);
+        elt.style.display = 'initial';
+        elt.style.transform = `${this._translation(targetRect, ownRect, t)} scale(${this.get('fieldScale')})`
+        ownTarget.style.width = this._matchWidth(ownTarget, targetRect, ownRect);
+        ownTarget.style.minHeight = this._matchHeight(ownTarget, targetRect, ownRect);
+        let label = Array.from(elt.children).find(elt => elt.tagName === 'LABEL');
+        if (label) {
+          label.style.transform = `translateY(-100%) scale(${1 / this.get('fieldScale')})`;
+        }
       }
       lastTargetRect = targetRect;
       yield raf();
