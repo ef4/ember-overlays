@@ -16,8 +16,8 @@ test('it renders without block', function(assert) {
     {{/overlay-marks}}
   `);
   assert.equal(this.$('label:contains(my overlay)').length, 1);
-  assert.equal(this.$('.my-overlay .target').width(), 100);
-  assert.equal(this.$('.my-overlay .target').height(), 200);
+  assert.equal(this.$('.my-overlay .target').width(), 110);
+  assert.equal(this.$('.my-overlay .target').height(), 210);
 });
 
 test('it renders with a custom label component', function(assert) {
@@ -51,8 +51,8 @@ test('it renders with user content', function(assert) {
     {{/overlay-marks}}
   `);
   assert.equal(this.$('.user-content').length, 1);
-  assert.equal(this.$('.my-overlay .target').width(), 100);
-  assert.equal(this.$('.my-overlay .target').height(), 200);
+  assert.equal(this.$('.my-overlay .target').width(), 110);
+  assert.equal(this.$('.my-overlay .target').height(), 210);
 });
 
 test('it renders with user content taller than underlying mark', function(assert) {
@@ -67,6 +67,20 @@ test('it renders with user content taller than underlying mark', function(assert
     {{/overlay-marks}}
   `);
   assert.equal(this.$('.user-content').length, 1);
-  assert.equal(this.$('.my-overlay .target').width(), 100);
+  assert.equal(this.$('.my-overlay .target').width(), 110);
   assert.equal(this.$('.my-overlay .target').height(), 300);
+});
+
+test('it renders larger overlays', function(assert) {
+  this.render(hbs`
+    {{#mark-overlay id="my-mark-id"}}
+      <div class="test-target" style="width: 100px; height: 200px"></div>
+    {{/mark-overlay}}
+    {{#overlay-marks as |mark|}}
+      {{create-overlay at=mark highlighted=true expandSizeBy=40 label="my overlay" class="my-overlay"}}
+    {{/overlay-marks}}
+  `);
+  assert.equal(this.$('label:contains(my overlay)').length, 1);
+  assert.equal(this.$('.my-overlay .target').width(), 140);
+  assert.equal(this.$('.my-overlay .target').height(), 240);
 });

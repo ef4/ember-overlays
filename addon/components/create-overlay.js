@@ -38,16 +38,16 @@ export default Component.extend({
     }
   },
 
-  _translation(targetRect, ownRect, currentTransform) {
-    return `translateX(${targetRect.left - ownRect.left + currentTransform.tx}px) translateY(${targetRect.top - ownRect.top + currentTransform.ty}px)`;
+  _translation(targetRect, ownRect, currentTransform, expandSizeBy) {
+    return `translateX(${targetRect.left - ownRect.left + currentTransform.tx - (expandSizeBy ? expandSizeBy / 2 : 5)}px) translateY(${targetRect.top - ownRect.top + currentTransform.ty - (expandSizeBy ? expandSizeBy / 2 : 5)}px)`;
   },
 
-  _matchWidth($elt, targetRect, ownRect) {
-    return `${$elt.outerWidth() + targetRect.right - targetRect.left - ownRect.right + ownRect.left}px`;
+  _matchWidth($elt, targetRect, ownRect, expandSizeBy) {
+    return `${$elt.outerWidth() + targetRect.right - targetRect.left - ownRect.right + ownRect.left + (expandSizeBy ? expandSizeBy : 10)}px`;
   },
 
-  _matchHeight($elt, targetRect, ownRect) {
-    return `${$elt.outerHeight() + targetRect.bottom - targetRect.top - ownRect.bottom + ownRect.top}px`;
+  _matchHeight($elt, targetRect, ownRect, expandSizeBy) {
+    return `${$elt.outerHeight() + targetRect.bottom - targetRect.top - ownRect.bottom + ownRect.top + (expandSizeBy ? expandSizeBy : 10)}px`;
   },
 
   _track: task(function * () {
@@ -64,14 +64,18 @@ export default Component.extend({
         // position ourselves over the target
         let ownRect = $ownTarget[0].getBoundingClientRect();
         let t = ownTransform($elt[0]);
+        const expandSizeBy = this.get('expandSizeBy');
+
         $elt.css({
           display: 'initial',
-          transform: `${this._translation(targetRect, ownRect, t)} scale(${this.get('fieldScale')})`
+          transform: `${this._translation(targetRect, ownRect, t, expandSizeBy)} scale(${this.get('fieldScale')})`
         });
+
         $ownTarget.css({
-          width: this._matchWidth($ownTarget, targetRect, ownRect),
-          minHeight: this._matchHeight($ownTarget, targetRect, ownRect),
+          width: this._matchWidth($ownTarget, targetRect, ownRect, expandSizeBy),
+          minHeight: this._matchHeight($ownTarget, targetRect, ownRect, expandSizeBy),
         });
+
         $elt.find('> label').css({
           transform: `translateY(-100%) scale(${1 / this.get('fieldScale')})`
         });
