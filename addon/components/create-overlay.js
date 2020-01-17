@@ -1,24 +1,24 @@
-import { or, and } from "@ember/object/computed";
-import Component from "@ember/component";
-import layout from "../templates/components/create-overlay";
-import raf from "../raf";
-import { ownTransform } from "../transform";
-import { task } from "ember-concurrency";
-import { boundsEqual } from "../bounds";
-import scrimFader from "../scrim-fader";
+import { or, and } from '@ember/object/computed';
+import Component from '@ember/component';
+import layout from '../templates/components/create-overlay';
+import raf from '../raf';
+import { ownTransform } from '../transform';
+import { task } from 'ember-concurrency';
+import { boundsEqual } from '../bounds';
+import scrimFader from '../scrim-fader';
 
 export default Component.extend({
   layout,
   scrimFader,
-  classNames: ["show-overlay"],
-  classNameBindings: ["reveal", "hoverable", "focused"],
+  classNames: ['show-overlay'],
+  classNameBindings: ['reveal', 'hoverable', 'focused'],
   hovered: false,
 
   // TODO
   fieldScale: 1,
 
   _targetRect() {
-    let mark = this.get("at");
+    let mark = this.get('at');
     return mark.bounds();
   },
 
@@ -31,7 +31,7 @@ export default Component.extend({
         return targetRect;
       }
       if (!hiding) {
-        elt.style.display = "none";
+        elt.style.display = 'none';
         hiding = true;
       }
       yield raf();
@@ -68,7 +68,7 @@ export default Component.extend({
 
   _track: task(function*() {
     let elt = this.element;
-    let ownTarget = elt.querySelector(".target");
+    let ownTarget = elt.querySelector('.target');
     let lastTargetRect;
 
     for (;;) {
@@ -78,14 +78,14 @@ export default Component.extend({
         // position ourselves over the target
         let ownRect = ownTarget.getBoundingClientRect();
         let t = ownTransform(elt);
-        let expandSizeBy = this.get("expandSizeBy");
-        elt.style.display = "initial";
+        let expandSizeBy = this.get('expandSizeBy');
+        elt.style.display = 'initial';
         elt.style.transform = `${this._translation(
           targetRect,
           ownRect,
           t,
           expandSizeBy
-        )} scale(${this.get("fieldScale")})`;
+        )} scale(${this.get('fieldScale')})`;
         ownTarget.style.width = this._matchWidth(
           ownTarget,
           targetRect,
@@ -99,39 +99,39 @@ export default Component.extend({
           expandSizeBy
         );
         let label = Array.from(elt.children).find(
-          elt => elt.tagName === "LABEL"
+          elt => elt.tagName === 'LABEL'
         );
         if (label) {
           label.style.transform = `translateY(-100%) scale(${1 /
-            this.get("fieldScale")})`;
+            this.get('fieldScale')})`;
         }
       }
       lastTargetRect = targetRect;
       yield raf();
-      while (this.get("lockWhileFocused") && this.get("focused")) {
+      while (this.get('lockWhileFocused') && this.get('focused')) {
         yield raf();
       }
     }
-  }).on("didInsertElement"),
+  }).on('didInsertElement'),
 
-  reveal: or("hoveredAndHoverable", "highlighted", "focused"),
-  hoveredAndHoverable: and("hovered", "hoverable"),
+  reveal: or('hoveredAndHoverable', 'highlighted', 'focused'),
+  hoveredAndHoverable: and('hovered', 'hoverable'),
 
   actions: {
     beginHover() {
-      this.set("hovered", true);
+      this.set('hovered', true);
     },
     endHover() {
-      this.set("hovered", false);
+      this.set('hovered', false);
     },
     targetClicked() {
-      let handler = this.get("onclick");
+      let handler = this.get('onclick');
       if (handler) {
         handler();
       }
     },
     dismiss() {
-      let handler = this.get("dismiss");
+      let handler = this.get('dismiss');
       if (handler) {
         handler();
       }
