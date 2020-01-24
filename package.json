@@ -1,6 +1,6 @@
 {
   "name": "ember-overlays",
-  "version": "1.1.0",
+  "version": "1.0.7",
   "description": "Flexible overlays that track your content.",
   "keywords": [
     "ember-addon",
