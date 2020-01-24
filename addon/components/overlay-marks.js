@@ -7,7 +7,7 @@ export default Component.extend({
   layout,
   tagName: '',
   service: service('ember-overlays'),
-  marks: computed('service.marks', 'reverseOrder', function() {
+  marks: computed('service.marks', function() {
     let group = this.get('group') || 'default';
     let id = this.get('id');
     const marks = this.get('service.marks')
