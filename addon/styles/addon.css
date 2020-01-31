@@ -12,7 +12,7 @@
 }
 
 .show-overlay.reveal {
-    visibility: initial;
+    visibility: visible;
 }
 
 .show-overlay.focused {
@@ -30,6 +30,7 @@
     transform-origin: bottom left;
     background-color: #63A9FA;
     color: white;
+    pointer-events: none;
 }
 
 .overlay-border {
@@ -44,7 +45,7 @@
     /* Only the target area itself is visible initially, and it
        doesn't have any content. But this makes it eligible for
        mouse events. */
-    visibility: initial;
+    visibility: visible;
 }
 
 .overlay-scrim {

@@ -10,6 +10,10 @@ export default Component.extend({
   marks: computed('service.marks', function() {
     let group = this.get('group') || 'default';
     let id = this.get('id');
-    return this.get('service.marks').filter(m => m.group === group && (id == null || m.id === id));
+    const marks = this.get('service.marks')
+      .filter(m => m.group === group && (id == null || m.id === id))
+      .slice(0)
+      .reverse();
+    return marks;
   })
 });

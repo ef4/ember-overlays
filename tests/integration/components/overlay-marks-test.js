@@ -18,7 +18,6 @@ module('Integration | Component | overlay marks', function(hooks) {
     assert.dom('.test-overlay').hasText('my-mark-id');
   });
 
-
   test('it yields marks with matching group', async function(assert) {
     await render(hbs`
       {{#mark-overlay group="test" id="my-mark-id"}}
@@ -41,5 +40,22 @@ module('Integration | Component | overlay marks', function(hooks) {
       {{/overlay-marks}}
     `);
     assert.dom('.test-overlay').doesNotExist('should find none');
+  });
+
+  test('it renders the marks in reverse order to correct z-index', async function(assert) {
+    await render(hbs`
+      {{#mark-overlay group="other" id="my-mark-id-1"}}
+        <div class="test-target"></div>
+      {{/mark-overlay}}
+      {{#mark-overlay group="other" id="my-mark-id-2"}}
+        <div class="test-target"></div>
+      {{/mark-overlay}}
+      {{#overlay-marks group="other" as |mark|}}
+        <div class="test-overlay">{{mark.id}}</div>
+      {{/overlay-marks}}
+    `);
+    assert.dom('.test-overlay').exists({ count: 2 });
+    assert.dom('.test-overlay').hasText('my-mark-id-2');
+    assert.dom('.test-overlay~.test-overlay').hasText('my-mark-id-1');
   });
 });

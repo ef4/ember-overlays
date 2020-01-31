@@ -1,5 +1,7 @@
 {{! template-lint-disable no-invalid-interactive --}}
-{{#if label}}
+{{#if labelComponent}}
+  {{component labelComponent}}
+{{else if label}}
   <label class="overlay-label">{{label}}</label>
 {{/if}}
 <div class="overlay-border">
