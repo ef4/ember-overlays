@@ -30,6 +30,7 @@
     transform-origin: bottom left;
     background-color: #63A9FA;
     color: white;
+    pointer-events: none;
 }
 
 .overlay-border {
